@@ -1,29 +1,34 @@
-import './globals.css'
-import type { Metadata } from 'next'
-import { Space_Grotesk } from 'next/font/google'
+import "./globals.css";
+import type { Metadata } from "next";
+import { Space_Grotesk } from "next/font/google";
 
-import Footer from '@/components/footer'
-import Navbar from '@/components/navbar'
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
 
-const font = Space_Grotesk({ subsets: ['latin'] })
+import ModalProvider from "@/providers/modal-provider";
+import ToastProvider from "@/providers/toast-provider";
+
+const font = Space_Grotesk({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'ECommerce store',
-  description: 'Ecommerce store',
-}
+  title: "ECommerce store",
+  description: "Ecommerce store",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
       <body className={font.className}>
+        <ModalProvider />
+        <ToastProvider />
         <Navbar />
         {children}
         <Footer />
-        </body>
+      </body>
     </html>
-  )
+  );
 }
